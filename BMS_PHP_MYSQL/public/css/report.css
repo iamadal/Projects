@@ -1,0 +1,28 @@
+* {margin: 0px; padding: 0px; box-sizing: border-box;}
+
+@font-face { font-family: 'BnFont';  src: url('../fonts/bn.ttf') format('truetype');}
+.bnFont    { font-family: 'BnFont';}
+
+table {margin: 0 auto}
+table,td,th {border:1px solid black; border-collapse: collapse; word-wrap: break-word;}
+td {padding: 3px;}
+th {padding: 3px 5px}
+
+ p {text-align: center;}
+                h3{text-align: center;}
+
+
+@media print {
+            @page {
+                size: A4; /* Set paper size to A4 */
+                margin: 5mm; /* Adjust margins as needed */
+            }
+ }
+
+
+td {text-align: center;}
+.left {text-align: left !important}
+
+
+.wrap {max-width: 200px}
+.left-align {text-align:left !important; max-width: 400px;}

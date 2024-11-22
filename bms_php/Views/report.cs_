@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Report</title>
+    <link rel="stylesheet" href="css/report.css">
+</head>
+<body>
+    <h3 class="bnFont">বিয়াম ফাউন্ডেশন, ঢাকা</h3>
+    <p  class="bnFont"> {{ bill_gen }}</p>
+    <p class="bnFont">রিপোর্ট প্রস্তুতির তারিখ: {{ "now"|date("d-m-Y") }}</p>
+    {% if bill_report is not empty %}
+        <table border="1">
+            <thead>
+                <tr  class="bnFont">
+                    <th>বিল নং</th>
+                    <th>বিবরণ</th>
+                    <th>মোট</th>
+                    <th>পরিশোধিত</th>
+                    <th>বকেয়া</th>
+                    <th>এম.আর. নং</th>
+                    <th>বিলের অবস্থা</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bill in bill_report %}
+                    <tr>
+                        <td>{{ bill.bill_id }}</td>
+                        <td  class="bnFont left-align">{{ bill.description }}</td>
+                        <td>{{ bill.total_amount | number_format(0, '.', ',')  }}</td>
+                        <td>{{ bill.paid_amount | number_format(0, '.', ',')  }}</td>
+                        <td>{{ bill.due_amount | number_format(0, '.', ',') }}</td>
+                        <td class="wrap">{{ bill.mr_no }}</td>
+                        <td>{{ bill.fw_status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+    {% else %}
+        <div class="no-data">No data found for the given date range.</div>
+    {% endif %}
+    <P  class="bnFont">প্রস্তুতকারক: {{user}}</P>
+</body>
+</html>
+
+</body>
+</html>
+
+</body>
+</html>

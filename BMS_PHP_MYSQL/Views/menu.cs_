@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>খাবার মূল্যতালিকা</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+
+
+<div class="container box">
+    <p>বিয়াম ক্যান্টিনের খাবারের মূল্য তালিকা- মে ২০২৪ </p>
+    <p class="info">মো: আব্দুল্লাহ আল মুহিত - 01738146670 (ক্যান্টিন ম্যানেজার)  </p>
+    <div class="selected-items" id="selectedItems">
+    <!-- Selected items will be displayed here -->
+</div>
+<div class="total-price" id="totalPrice" style="text-align: center; padding:2px ;background-color: #61A327; color: #fff ">
+     <p>মোট মূল্য:  <span id="sellingTotal">০০.০০</span> টাকা</p>
+	 <hr>
+	      <p>ভ্যাট(৫%):  <span id="vat">০০.০০</span> টাকা</p>
+		       <p>সার্ভিস চার্জ(৫%):  <span id="service">০০.০০</span> টাকা</p>
+			   <hr>
+			        <p>সর্বমোট:  <span id="grandTotal">০০.০০</span> টাকা</p>
+</div>
+
+
+
+<div style="padding: 5px"> 
+<input type="text" id="item" style="font-size: 14px;" placeholder="খাবারের নাম লিখুন">
+<p><button id="removeBtn" class="button">শেষ আইমেটি বাদ দিন &minus;</button></p>
+<p><button id="clearBtn" class="button"> নতুন খাবার তালিকা তৈরী &#9746;</button></p>
+<p><a class="button" href="/">মূলপাতা </a></p>
+</div>
+
+</div>
+
+
+
+
+ <!-- <p >প্রকৃত ব্যয়(টাকা):  <span id="actualTotal">০০.০০</span> টাকা</p> -->
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/code.js"></script>
+<script>
+</script>
+
+</body>
+</html>

@@ -1,1 +1,214 @@
-Catneen Automation System - CAS
+﻿Catneen Automation System - CAS
+@author- MD. ADAL KHAN
+
+List of Roles
+01. Canteen Manager - CM
+02. Computer Operator - CO
+03. Assistant Canteen Manager - ACM
+04. Canteen Supervisor- CS
+05. Canteen Store Keeper - CSK
+06. Data Entry Operator - DE
+07. Table Boys - TB
+08. General User - GU
+09. Admin - Admin
+10. Receptionist - RC
+11. Cashier - CA
+
+---------------------------------------------------------
+Project outline
+
+1.1 This is our homepage. it will show login system along with menu shown in the top bar
+1.2 Price/Bill Calculator. This is a simple price calculator. 
+      (Type-1): see priceCalc_1.png  N.B: No need to save data.
+      (Type-2): see priceCalc_2.png  N.B: Need data saving option so that user can access it by selecting the date, row should be dynamic so that rows can be added or removed
+                user can add whole table and at the bottom of the table total bill will be displayed.
+     
+1.3 Duty Plan: This is a Very Simple App. We have 9 regular table boys to serve food in the following canteen. (see canteenList.png)
+    Each table boy work 8 hours in one shift. if they work both shift they get paid 400TK[same method is applicable for table boys who would like to work at their holidays]
+    Also we hire table boys in outsourcing method. They are called ন.হা if they work one shift they get paid 400Tk for 
+    both shift they get paid 600TK
+
+    We need an input form like canteenList.png also a seperate list for tracking CL for Table boys.
+    from CL list identify off days and and generate report
+    
+    Procedure.(see canteenList.png and canteenReport.png )
+    
+    fn.findTotalSeat(int seat, int participants): array
+       * seat         = sum(2nd_column)  -- canteenList.png
+       * participants = sum(4th_column)  --- canteenList.png 
+       * number_of_table_boys = celing(participants/35) 
+       * number_of_people_for_dishwash = celing(participants/100) - this applicable for all(excluding Table Boys)
+         
+	return an array containing number of table_boys, people_for_dishwash and other required for the canteen each day
+	see canteenReport.png   
+
+1.4 Purchase Analyser(Most important) - see our purchase list. list should be modified and and classify our goods
+    Purchase List - PurchaseList.pdf
+    
+    This App have two Interface:
+    Interface_1: Food Menu Generator.(Per 1 Person) - Create custom list and save each item.
+     input: 
+     Enter Item name = Bread
+     Add Ingredients +
+     + Flour - 0.5KG
+     + Oil   - 0.1KG
+     + Salt  - 0.05KG
+     Save
+
+    fn.estimation(food_item: string, quantity: int): array
+       1. findOrFail = loop_up_database(food_item: string ): bool
+       2. if(findOrFail):
+             ingredient[] = fetchItem(food_item)
+             calculate_the_required_ingredients
+             iflour = flour*quantity
+             iOil   = Oil*quantity
+             iSalt  = iSalt*quantity
+             update_purchase_list(array of ingredients)
+             return the ingredients array and push it on the Bazar list
+ 
+         else:
+           redirect to add food item page
+
+      
+     Sample input: Bread for 5 People
+     Sample Output: Flouer = 0.5*5  = 2.5KG
+                    Oil    = 0.1*5  = 0.5KG
+                    Salt   = 0.05*5 = 0.25KG
+
+    Interface_2: read food menu as string connected by plus sing and Number of Person (see Menu.png)
+        fn.purseFoodItem(itemList: string, quatity: int): void
+           menu = itemlist.split('+')
+           for(i=0;i<=menu.size(); i++):
+                  fn.estimation(menu[i], quantity)
+                  update_purchase_list()
+
+
+    after successful bazar list generation should be able to print the page.
+
+
+1.5 Bill Verify
+    UI
+    Enter Bill ID: 
+    Find Button
+    
+    Input: Bill ID
+    Output: Food Bill amount with downloadable copy of the bill
+
+1.6 Admin Panel 
+    1.6.1 Approve users.  fn.aproveUser(username: string, feedback: bool): bool
+    1.6.2 View User List. fn.viewUser(username: string): array
+    1.6.3 Assign Roles.   fn.addRoles(username: string): bool
+    1.6.4 Delete User.    fn.deleteUser(username: string): bool
+
+------------------------------------------------------------------------------------------------------------------------------------
+Interfaces based on roles
+
+Role: Canteen Manager, Role name: CM
+
+Procedure:
+1. Login
+2. redirect to @route: /canteen_manager [Access all routes except /admin]
+   2.1 View Bill List - in case we need a interface so that we can print
+   2.2 Sent Bills
+   2.3 Unpaid Bills
+   2.4 Due Bills
+   2.5 All bills - Generate Reports
+   2.6 Need a Cashbook Interface Where CM can entry total amount withdrawn from the bank and money to purchase everyday.
+       Total amount withdrawn should comes from a database which will be manipulated by Computer Operator
+-----------------------------------------------------------------------------------------------------------------------------
+Role: Canteen Supervisor, Role: CS[allowed route /purchaseAnalyzer, /, /dashboard]
+able to access following.
+01. Purchase Analyzer
+02. Generating Cost estimation based on Purchase List- see sample bazar_list.pdf
+03. We need an interface where supervisor can track of crocarise for the program.supply and demnad
+---------------------------------------------------------------------------------------------------------------------------
+Role: Canteen Store Keeper, Role Name: CSK[allowed route /, /dashoboard, /purchaseAnalyzer, /store_keeper]
+Objective:
+01. Create an interface from where Store Keep can fetch the list of available product from storage.
+02. He will select on going report session and manually input supply and demnad
+ 
+
+Procedure:
+  1. retriveProductList(): array
+  2. fn.supply(qty: float): bool [success or fail]
+       update_purchase_list()     - this purchase list is connected to computer operator who is responsible to input purchase
+  3. fn.demand(qty: float): bool [success ors fail]
+        update_purchase_list()
+----------------------------------------------------------------------------------------------------------------------------------
+Role: Computer Operator[Most important]
+
+@route: /computer_operator[allowed route all except /store_keeper]
+
+interface_01: Purchase Entry 
+
+MENU
+  1. Create Bill
+  2. Create New Store Report
+  3. View All
+  4. Delete Report - Sent a notification to Canteen Manager before deleting the report
+
+
+
+
+  1.0 Create Bill
+  1.1 fn.create(bill_id: int, primary key
+                description,
+                Food_bill: number  required
+                Paid_amount: number required
+                due_amount: number required
+                ): bool
+  1.2 fn.deleteBill(findByBillid)
+  1.3 fn.edit(findByBillid)
+  1.4 need an interface to print report for unpaid bills and total bill 
+
+
+
+
+  2.0 Create New Store Report
+      2.1 create_store(start_date: date, end_date: date): bool
+          number_of_tabs = end_date - start_date   - ensure that UB for number_of_tab is = 8 and LB is = 1
+          for (i = 0;i<=number_of_tabs;i++):
+              tab_1.title = start_date
+              tab_2.title = start_date+1
+              ..........................
+              ..........................
+      2.2 create an interface to entry Purchase(see purchase.png). Each Purchase is linked with a Topsheet. see topsheet.png
+          begin:
+            arr = {numbers from topsheet}
+            for(i=0;i<=number_of_tabs;i++)
+            
+              
+             
+             
+              
+      
+ 
+
+
+---------------------------------------------------------------------------------------------------------------------------
+Role: Cashier
+@route: /cashier [allowed route: /cashier]  destry the session if user try to manually visit the route except allowed route
+
+interface: Just Show the list of Due bills. and make a text box so that he can add payment along with monery receipt and date
+also report generation system
+----------------------------------------------------------------------------------------------------------------------------
+
+   
+    
+    
+                          
+                               
+    
+   
+            
+                 
+    
+
+         
+            
+
+    
+    
+        
+    
+    

@@ -83,7 +83,7 @@ Project outline
                   update_purchase_list()
 
 
-    after successful bazar list generation should be able to print the page.
+    on successful bazar list generation, users should be able to print the page.
 
 
 1.5 Bill Verify

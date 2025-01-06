@@ -19,12 +19,14 @@
                <img src="{{ asset ('img/govt.png')}}" width="50px"> 
            </div>
            <p class="headerTitle"> BIAM Foundation, Dhaka </p> <p class="hFooter">63, New Eskaton, Dhaka-1217</p> <p id="clock"></p>
+           <marquee scrollAmount="3"> <strong>Notice:</strong> Please place or cancel orders for breakfast before 07:00 AM, for lunch before 11:00 AM, and for dinner before 06:00 PM. Orders placed after these time will not be accepted or cancelled.</marquee>
         </div>
         </div>
         <div class="main">
              <br>
              <h2>Sign in (Canteen)</h2>
              <form method="POST" action="/login">
+              @csrf
               <div class="login-form-wrap">
                   <input type="text"     placeholder="Username" name="login_user">
                   <input type="password" placeholder="Password" name="login_user_password">
@@ -33,18 +35,6 @@
               </div>
           </form>
         </div>
-        <br>
-        <hr>
-        <br>
-        <div> <p>Quick Links</p>
-            <ol start="01" >
-                <li><a href="/menu"> <img src="{{ asset('ico/Links.svg') }}" width="12px"> Food MENU </a></li>
-                <li><a href="/menu"> <img src="{{ asset('ico/Links.svg') }}" width="12px"> About US </a></li>
-            </ol>
-        </div>
-        <br>
-        <hr>
-        <p style="text-align: center; color: green;">&copy; BIAM Foundation, Dhaka 2025</p>
     </div>
     <!-- JS -->
     <script src="{{ asset('js/base.js') }}"></script>

@@ -10,6 +10,9 @@
     <script> document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js'); </script>
 </head>
 <body>
-    <div class="err box"><h3>Page not found! :( </h3> <p>&copy; BIAM Foundation, Dhaka</p> <a class="button" href="/"> Go Back to Home</a> </div>
+    <div class="err box">
+        <h3 align="center">Page not found! :( </h3> <p align="center">BIAM Foundation, Dhaka </p> 
+        <p align="center"><a class="button" href="/"> Go Back to Home</a></p>
+    </div>
 </body>
 </html>

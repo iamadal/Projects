@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Pages;
+use App\Http\Controllers\CAuth;
 
 
-Route::get('/', function () {
-    return view('auth/index');
-});
+# Base Login System
 
+Route::get('/' ,[CAuth::class,'ViewForm'])->name('LoginForm');
+Route::post('/',[CAuth::class,'SubmitForm'])->name('SubmitForm');
 
 
 

@@ -18,19 +18,19 @@
             <div class="base-logo">
                <img src="{{ asset ('img/govt.png')}}" width="50px"> 
            </div>
-           <p class="headerTitle"> BIAM Foundation, Dhaka </p> <p class="hFooter">63, New Eskaton, Dhaka-1217</p> <p id="clock"></p>
-           <marquee scrollAmount="3"> <strong>Notice:</strong> Please place or cancel orders for breakfast before 07:00 AM, for lunch before 11:00 AM, and for dinner before 06:00 PM. Orders placed after these time will not be accepted or cancelled.</marquee>
+           <p class="headerTitle"> Rakib BD </p> <p class="hFooter">Turn your time into money.</p> <p id="clock"></p>
+           <marquee scrollAmount="3"> <strong>Offer:</strong> Refer your friends to RakibBD and get paid instant cash </marquee>
         </div>
         </div>
         <div class="main">
              <br>
-             <h2>Sign in (Canteen)</h2>
-             <form method="POST" action="{{ route('SubmitForm') }}">
+             <h2>Sign in </h2>
+             <form method="POST" action="/login">
               @csrf
               <div class="login-form-wrap">
-                  <input type="text"      placeholder="Username" name="username" required>
-                  <input type="password"  placeholder="Password" name="password" required>
-                  <p>No Account? <a href="">Create One!</a></p>
+                  <input type="text"     placeholder="Username" name="login_user">
+                  <input type="password" placeholder="Password" name="login_user_password">
+                  <p>No Account? <a href="/">Create One!</a></p>
                   <input type="submit" value="Login" class="button">
               </div>
           </form>

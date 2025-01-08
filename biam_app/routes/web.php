@@ -11,6 +11,8 @@ use App\Http\Controllers\CAuth;
 Route::get('/' ,[CAuth::class,'ViewForm'])->name('LoginForm');
 Route::post('/',[CAuth::class,'SubmitForm'])->name('SubmitForm');
 
+Route::get('/dashboard',[Pages::class,'dashboard'])->name('dashboard');
+
 
 
 

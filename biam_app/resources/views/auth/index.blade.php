@@ -30,7 +30,7 @@
               <div class="login-form-wrap">
                   <input type="text"      placeholder="Username" name="username" required>
                   <input type="password"  placeholder="Password" name="password" required>
-                  <p>No Account? <a href="">Create One!</a></p>
+                  <p>No Account? <a href="{{ route('dashboard')}}">Create One!</a></p>
                   <input type="submit" value="Login" class="button">
               </div>
           </form>

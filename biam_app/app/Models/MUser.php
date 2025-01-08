@@ -16,5 +16,6 @@ class MUser extends Model
         'phone',
         'first_name',
         'last_name',
+        'role'
     ];
 }

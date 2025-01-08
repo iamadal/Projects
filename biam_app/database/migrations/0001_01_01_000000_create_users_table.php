@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +14,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->timestamps(); // This automatically adds created_at and updated_at columns
+            $table->string('role')->default('user'); 
+            $table->timestamps(); 
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

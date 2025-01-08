@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="dashboard">
-        
+        <h1>Dashboard</h1>
     </div>
     <script src="{{ asset('js/base.js') }}"></script>
 </body>

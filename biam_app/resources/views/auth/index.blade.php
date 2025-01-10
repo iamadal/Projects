@@ -29,9 +29,26 @@
               @csrf
               <div class="login-form-wrap">
                   <input type="text"      placeholder="Username" name="username" required>
+                     @error('username')
+                        <div>{{ $message }}</div>
+                     @enderror
                   <input type="password"  placeholder="Password" name="password" required>
+                     
+                     <input type="checkbox" id="remember" name="remember">
+                     <label for="remember">Remember Me</label>
+                     <br>
+                     <br>
                   <p>No Account? <a href="{{ route('dashboard')}}">Create One!</a></p>
                   <input type="submit" value="Login" class="button">
+                   @if ($errors->any())
+                  <div>
+                     <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                 </div>
+                @endif
               </div>
           </form>
         </div>

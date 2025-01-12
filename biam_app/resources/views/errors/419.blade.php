@@ -1,5 +1,3 @@
-<!-- Copyright Adal Khan, <mdadalkhan@gmail.com> 6 JAN 2025 -->
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -12,9 +10,9 @@
     <script> document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js'); </script>
 </head>
 <body>
-    <div class="dashboard">
-        <h1>Dashboard</h1>
+    <div class="err box">
+        <h3 align="center">Page not found! :( </h3> <p align="center">BIAM Foundation, Dhaka </p> 
+        <p align="center"><a class="button" href="/"> Go Back to Home</a></p>
     </div>
-    <script src="{{ asset('js/base.js') }}"></script>
 </body>
 </html>

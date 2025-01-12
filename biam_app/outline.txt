@@ -3,3 +3,6 @@ BIAM Automation System v1.0
 Section-01 (Canteen)
 
 01. Controller Name: Page = Handle All pages
+02. Controller CAuth: Controll all types of authentication
+
+01. Model: MUser = Manage all users including their roles

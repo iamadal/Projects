@@ -34,13 +34,24 @@ input[type=text]:focus, input[type=password]:focus, input[type=tel]:focus   { bo
 }
 
 
+/* Listing error messages during login */
+.error-list {
+    text-align: center;
+    color: red;
+    padding: 3px;
+}
+
+/* form  */
+
+.right-btn {display: grid; justify-self: end}
+
 .container   { width: 95%; margin: 0 auto; }
 .base-logo   { float: left;margin: 5px 4px;}
 .hFooter     { font-size: 12px; }
 #clock       { font-size: 12px; color: red }
 
 .headerTitle {font-size:20px; font-weight: bold}
-.header-wrap   {border-bottom: 1px solid green; margin: 2px 0px;}
+.header-wrap   {border: 1px solid green; margin: 2px 0px;}
 
 /* Error 404 */
 

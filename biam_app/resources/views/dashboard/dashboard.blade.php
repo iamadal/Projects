@@ -14,6 +14,7 @@
 <body>
     <div class="dashboard">
         <h1>Dashboard</h1>
+        <a href="{{ route('logout') }}">Logout</a>
     </div>
     <script src="{{ asset('js/base.js') }}"></script>
 </body>

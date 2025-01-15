@@ -90,6 +90,10 @@ return [
     |
     */
 
+    'redirects' => [
+    'login' => '/',  // This is the default login URL
+],
+
     'passwords' => [
         'users' => [
             'provider' => 'users',
@@ -111,5 +115,6 @@ return [
     */
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
+
 
 ];

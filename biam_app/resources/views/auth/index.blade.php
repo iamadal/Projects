@@ -15,54 +15,50 @@
         document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js'); 
     </script>
 </head>
-<body>
+<body class="containerWrap">
     <div class="super_container">
-        <div class="container mulish-regular box">
+        <div class="container bnFont box">
         <div class="header-wrap box" style="background-image: url('{{ asset('img/p.png') }}'); ">
             <div class="header">
                 <div class="base-logo">
-                    <img src="{{ asset('img/govt.png')}}" width="50px">
+                    <img src="{{ asset('img/govt.png')}}" width="40px">
                 </div>
-                <p class="headerTitle">BIAM Foundation, Dhaka</p>
-                <p class="hFooter">63, New Eskaton, Dhaka-1217</p>
-                <p id="clock"></p>
+                <p class="headerTitle">বিয়াম ফাউন্ডেশন, ঢাকা</p>
+                <p class="hFooter">৬৩, নিউ ইস্কাটন, ঢাকা-১২১৭</p>
             </div>
         </div>
-            <marquee scrollAmount="3"><strong>Notice:</strong> Please place or cancel orders for breakfast before 07:00 AM, for lunch before 11:00 AM, and for dinner before 06:00 PM. Orders placed after these time will not be accepted or cancelled. </marquee>
+            <marquee scrollAmount="3"><strong>নোটিশ:</strong> অনুগ্রহ করে সকালের খাবার সকাল আটটার আগে আতিল বা অর্ডার করুন। ধন্যবাদ </marquee>
         <div class="main">
             <br>
-            <h2 align="center"><i class="material-icons" style="font-size: 25px; vertical-align: middle;">lock </i> Sign In to your account!</h2>
-            <form method="POST" action="{{ route('SubmitForm') }}">
-                @csrf
-                 @if ($errors->any())
-                        <div class="error-list">
-                            <ul>
+            <h2 align="center"><i class="material-icons" style="font-size: 25px; vertical-align: middle;">lock </i> আপনার একাউন্টে লগইন করুন!</h2>
+            @if ($errors->any())
+                        <div class="error-list mulish-regular">
+                            <ul> 
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    <li class="bnFont"> <i class="material-icons" style="font-size: 25px; vertical-align: middle;">warning </i> {{ $error }} </li>
                                 @endforeach
                             </ul>
                         </div>
                     @endif
-                <div class="login-form-wrap">
-                    <label><strong> <p><i class="material-icons" style="font-size:16px; vertical-align: middle;">face </i>Username </p></strong></label>
-                    <input type="text" placeholder="Enter your username" name="username" required>
-                    <label><strong> <p><i class="material-icons" style="font-size: 16px; vertical-align: middle;">lock </i>Password </p></strong></label>
-                    <input type="password" placeholder="Enter your password" name="password" required>
+            <form method="POST" action="{{ route('SubmitForm') }}">
+                @csrf
+                <div class="login-form-wrap bnFont">
+                    <label><p><i class="material-icons" style="font-size:16px; vertical-align: middle;">face </i> ইউজার আইডি </p></label>
+                    <input class="bnFont" type="text" placeholder="আপনার ইউজার আইডি লিখুন(ইংরেজি বর্ণে)" name="username">
+                    <label> <p><i class="material-icons" style="font-size: 16px; vertical-align: middle;">lock </i> পাসওয়ার্ড </p></label>
+                    <input type="password" class="bnFont" placeholder="আপনার পাসওয়ার্ডটি লিখুন (ইংরেজি বর্ণে)" name="password">
                     <div class="remember-me">
                         <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">Remember Me</label> 
+                        <label for="remember">লগইন মনে রাখুন</label> 
                     </div>
                     <br>
-                     <p> <span style="color:red">No account?</span> <a href="{{ route('dashboard')}}">Create One!</a></p>
-                   <div class="right-btn"> <button class="button" type="submit">Login <i class="material-icons" style="font-size: 16px; vertical-align: middle;">login</i></button>  </div>
+                     <p> <span style="color:red">একাউন্ট নেই?</span> <a href="{{ route('dashboard')}}">একাউন্ট তৈরী করুন!</a></p>
+                   <div class="right-btn"> <button class="button bnFont" type="submit">লগইন করুন <i class="material-icons" style="font-size: 16px; vertical-align: middle;">login</i></button>  </div>
                 </div>
             </form>
         </div>
     </div>
     </div>
     <script src="{{ asset('js/base.js') }}"></script>
-    <script>
-        function updateClock(){var now=new Date(),hours=now.getHours(),minutes=now.getMinutes(),seconds=now.getSeconds(),ampm=hours>=12?"PM":"AM";hours=hours%12;hours=hours?hours:12;hours=hours<10?"0"+hours:hours;minutes=minutes<10?"0"+minutes:minutes;seconds=seconds<10?"0"+seconds:seconds;document.getElementById("clock").innerHTML=hours+":"+minutes+":"+seconds+" "+ampm}setInterval(updateClock,1000);updateClock();
-    </script>
 </body>
 </html>

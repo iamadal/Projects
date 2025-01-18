@@ -1,13 +1,11 @@
-<?php
+<?php 
 
- namespace app;
- 
-use PDO;
-use http\Client\Request;
-    
- class api {
- 	public function console(){
- 		echo("Execution is Fine");
- 		var_dump(Request)
- 	}
- }
+namespace App;
+
+use Symfony\Component\Console\Command\Command;
+
+class Api extends Command {
+    public function write(){
+        echo("Coded");
+    }
+}

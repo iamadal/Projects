@@ -4,15 +4,14 @@
   * API Testing
   * @author Adal Khan
   * */
-require_once __DIR__ . '/app/api.php';
+require __DIR__ . '/vendor/autoload.php';
 
-use app\api;
-
-$io = new api();
-
-$io->console();
+use App\api;
 
 
+$ap = new api();
+
+$ap->write();
 
  
  

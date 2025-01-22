@@ -1,6 +1,6 @@
 const route = {
 	  index: '/',
-	  about: (name) => `about/{name}`
+	  about: '/users/:id(\\d+)'
 }
 
 module.exports = route;

@@ -11,9 +11,8 @@ const web = {
 	},
 
 	about: (req,res)=>{
-		const id = req.params.name
-		res.write(id)
-		res.end()
+		const id = req.params.id
+		res.send(id)		
 	}
 }
 

@@ -1,1 +1,15 @@
-<h1> This is Working on IIS </h1>
+<form method="POST" action="/submit-form">
+  <!-- Hidden CSRF token for security -->
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <h1><%= csrfToken %></h1>
+  <!-- Username field -->
+  <label for="username">Username:</label>
+  <input id="username" type="text" name="username" required>
+  
+  <!-- Email field -->
+  <label for="email">Email:</label>
+  <input id="email" type="email" name="email" required>
+
+  <!-- Submit button -->
+  <button type="submit">Submit</button>
+</form>

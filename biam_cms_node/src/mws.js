@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 /**
  * BIAM Canteen Management System (BIAM CMS)
  * Author: Adal Khan - A01799729507@gmail.com
@@ -12,9 +14,34 @@ const   session = require('express-session')
 const   express = require('express')
 const rateLimit = require('express-rate-limit')
 
-require('dotenv').config();
 
-function init(app) {
+function createToken() { return crypto.randomBytes(24).toString('hex') }
+
+function csrf(req, res, next){
+    if(!req.session) {
+        return next(new Error('SESSION ERROR'))
+    }
+
+    if(req.method === 'GET') {
+        if(!req.session._csrf) {
+            req.session._csrf = createToken()
+        }
+        res.locals._csrf = req.session._csrf
+    }
+
+    if(['POST', 'PUT', 'DELETE'].includes(req.method)){
+        const token = req.header['x-csrf-token']
+        if(token !== req.session._csrf) {
+            return res.status(403).json({error: 'Invalid CSRF token'})
+        }
+    }
+    next()
+}
+
+
+
+
+function initMWS(app) {
     const       limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: process.env.RATE_LIMIT || 100, message: "MRPM ERROR" });
     const   corsOptions = { origin: (origin, callback) => (origin === process.env.CORS_ORIGIN ? callback(null, true) : callback(null, false)), methods: ['GET', 'POST', 'PUT', 'DELETE'], credentials: true }
     const sessionSecret = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
@@ -28,8 +55,9 @@ function init(app) {
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
     app.use(session({ secret: sessionSecret, resave: false, saveUninitialized: false, cookie: { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 24 * 60 * 60 * 1000 } }));
+    app.use(csrf)
 
     if (process.env.NODE_ENV === 'production') app.set('trust proxy', 1);
 }
 
-module.exports = init;
+module.exports =  initMWS ;

@@ -47,6 +47,6 @@ app.use((req, res) => {
 })
 
 
- app.listen(PORT) 
+ // app.listen(PORT) 
 
-// module.exports = app  // Enable it to test the APP
+module.exports = app  // Enable it to test the APP

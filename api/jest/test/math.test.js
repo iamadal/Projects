@@ -3,7 +3,9 @@
 const add = require('../src/math.js')
 
 describe('Math',()=>{
-	test('adding two numbers',()=>{
+	it('Should add two numbers: ',()=>{
 		expect(add(1,2)).toBe(3)
 	})
 })
+
+

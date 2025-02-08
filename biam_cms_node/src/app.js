@@ -22,31 +22,24 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'src', 'views'));
+app.set('views', path.join(__dirname, 'views'));
 
 /* route map */
 
 app.get('/',         cms.index)
-app.get('/user/:id', cms.userId)
+app.get('/user/:id', cms.user_id)
+
+app.post('/login', cms.login)
 
 
-app.get('/csrf', (req, res) => {
-  res.json({csrf: res.locals._csrf});
+
+
+
+app.use((request, response) => {
+      response.render('404')
 })
 
 
-app.post('/secure', (req, res) => {
-  res.json({ message: 'Secure endpoint accessed!' });
-});
+ app.listen(PORT) 
 
-
-
-app.use((req, res) => {
-  res.status(200)
-  res.send('Error(NRF)')
-})
-
-
- // app.listen(PORT) 
-
-module.exports = app  // Enable it to test the APP
+// module.exports = app  // Enable it to test the APP

@@ -15,34 +15,38 @@ const   express = require('express')
 const rateLimit = require('express-rate-limit')
 
 
-function createToken() { return crypto.randomBytes(24).toString('hex') }
 
-function csrf(req, res, next){
-    if(!req.session) {
-        return next(new Error('SESSION ERROR'))
+
+function createToken() {
+    return crypto.randomBytes(24).toString('hex');
+}
+
+function csrf(req, res, next) {
+    if (!req.session) {
+        return next(new Error('SESSION ERROR'));
     }
 
-    if(req.method === 'GET') {
-        if(!req.session._csrf) {
-            req.session._csrf = createToken()
+    if (req.method === 'GET') {
+        if (!req.session._csrf) {
+            req.session._csrf = createToken();
         }
-        res.locals._csrf = req.session._csrf
+        res.locals._csrf = req.session._csrf; // Make token available in templates
+    } 
+
+    if (['POST', 'PUT', 'DELETE'].includes(req.method)) {
+        const token = req.headers['x-csrf-token'] || req.body._csrf; // Check header OR hidden input field
+        if (!token || token !== req.session._csrf) {
+            return res.status(403).render('404')
+        }
+        req.session._csrf = createToken(); // Rotate the CSRF token
     }
 
-    if(['POST', 'PUT', 'DELETE'].includes(req.method)){
-        const token = req.header['x-csrf-token']
-        if(token !== req.session._csrf) {
-            return res.status(403).json({error: 'Invalid CSRF token'})
-        }
-    }
-    next()
+    next();
 }
 
 
-
-
 function initMWS(app) {
-    const       limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: process.env.RATE_LIMIT || 100, message: "MRPM ERROR" });
+    const       limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: process.env.RATE_LIMIT || 100, message: "Request Error. Try again!" });
     const   corsOptions = { origin: (origin, callback) => (origin === process.env.CORS_ORIGIN ? callback(null, true) : callback(null, false)), methods: ['GET', 'POST', 'PUT', 'DELETE'], credentials: true }
     const sessionSecret = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
     

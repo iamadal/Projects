@@ -1,11 +1,15 @@
 const cms = {
-	 index: (req , res) => {
-		res.send('OK')
+	 index: (request , response) => {
+		response.render('index', { _csrf: request.session._csrf })
 	},
 
-	userId: (req, res)=> {
-		const a = req.params.id
-		res.send(a)
+	user_id: (request, response)=> {
+		const a = request.params.id
+		response.send(a)
+	},
+
+	login: (request, response)=> {
+		 response.send("Validation OK")
 	}
 }
 

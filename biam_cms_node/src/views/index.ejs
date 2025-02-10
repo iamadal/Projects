@@ -1,10 +1,5 @@
-<h1>Welcome to Canteen Management System</h1>
+<h1>CMS Home</h1>
 
-<form method="post" action="/login">
-  <!-- Corrected CSRF token syntax -->
-  <input type="hidden" name="_csrf" value="<%= _csrf %>">
-  
-  <input type="text" placeholder="Enter your username" name="username"> <br><br>
-  <input type="password" placeholder="Enter your password" name="pass">
-  <input type="Submit" value="Login">
-</form>
+
+<a href="/login">Login to canteen</a> <br>
+<a href="/register">Signup for Canteen</a>

@@ -1,0 +1,9 @@
+<h1>Please Signin</h1>
+<form method="post" action="/login">
+  <input type="hidden" name="_csrf" value="<%= _csrf %>">
+  <input type="text" placeholder="Enter your username" name="username" required><br><br>
+  <input type="password" placeholder="Enter your password" name="password" required pattern="^(?=.*[A-Za-z]).{8,}$" title="Password must be at least 8 characters long and contain at least one letter."><br><br>
+  <input type="submit" value="Login">
+</form>
+
+<a href="/register">Register</a>

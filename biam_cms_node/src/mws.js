@@ -17,6 +17,7 @@ const rateLimit = require('express-rate-limit')
 
 
 
+
 function createToken() {
     return crypto.randomBytes(24).toString('hex');
 }
@@ -46,7 +47,7 @@ function csrf(req, res, next) {
 
 
 function initMWS(app) {
-    const       limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: process.env.RATE_LIMIT || 100, message: "Request Error. Try again!" });
+    const       limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: process.env.RATE_LIMIT || 100, message: "#00001" });
     const   corsOptions = { origin: (origin, callback) => (origin === process.env.CORS_ORIGIN ? callback(null, true) : callback(null, false)), methods: ['GET', 'POST', 'PUT', 'DELETE'], credentials: true }
     const sessionSecret = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
     

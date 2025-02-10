@@ -1,0 +1,11 @@
+<h1> Please Register </h1>
+<form method="post" action="/register">
+  <input type="hidden" name="_csrf" value="<%= _csrf %>">
+  <input type="text" placeholder="Enter your username" name="username" required> <br><br>
+  <input type="password" placeholder="Enter your password" name="password" required> <br><br>
+  <input type="email" placeholder="Enter email" name="email" required> <br><br>
+  <input type="tel" placeholder="Enter phone number" name="phone" required pattern="^0\d{10}$" title="Phone number must be 11 digits, starting with a leading zero."> <br><br>
+  <input type="Submit" value="Save">
+</form>
+
+<a href="/login">Signin</a>

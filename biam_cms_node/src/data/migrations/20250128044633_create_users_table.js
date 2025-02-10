@@ -9,8 +9,8 @@ exports.up = function(knex) {
    		table.string('password', 255).notNullable()
    		table.string('email',    255).notNullable().unique()
    		table.string('phone',    255).notNullable().unique()
-   		table.string('role',     255).notNullable()
-   		table.string('status',   255).notNullable()
+   		table.string('role',     255).notNullable().defaultTo('user')
+   		table.string('status',   255).notNullable().defaultTo('inactive')
    		table.timestamps(true,true)
    })
 }

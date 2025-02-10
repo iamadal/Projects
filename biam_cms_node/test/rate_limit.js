@@ -29,6 +29,6 @@ describe('Rate Limit TEST:', () => {
     // The 101th request should be blocked
     const response = await request(app).get('/')
     expect(response.status).toBe(429);  
-    expect(response.text).toBe('MRPM ERROR');
+    expect(response.text).toBe('#00001');
   })
 })

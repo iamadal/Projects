@@ -1,5 +1,12 @@
 <h1> Please Register </h1>
-<form method="post" action="/register">
+
+ <% if (flashMessage) { %>
+        <p style="color: green;"><%= flashMessage %></p>
+    <% } %>
+
+
+
+<form method="post" action="/cms/create">
   <input type="hidden" name="_csrf" value="<%= _csrf %>">
   <input type="text" placeholder="Enter your username" name="username" required> <br><br>
   <input type="password" placeholder="Enter your password" name="password" required> <br><br>
@@ -8,4 +15,4 @@
   <input type="Submit" value="Save">
 </form>
 
-<a href="/login">Signin</a>
+<a href="/cms/login">Signin</a>

@@ -3,7 +3,7 @@
 const User = require('./data/models/users')
 
 const index = (request,response) => {
-	  response.render('index')
+	  	  response.render('index', { msg: request.session.msg || " " })
 }
 
 const userId = (request, response) => {
@@ -33,19 +33,21 @@ const getLogin = (request, response) => {
 /* User Registration */
 
 const register = (request, response) => {
-	response.render('register',  { _csrf: request.session._csrf })
+	response.render('register',  { _csrf: request.session._csrf, msg: response.locals.flashMessage })
 }
 
 const registered = async (request, response) => {
+
 	const {username, password , email, phone } = request.body
 
 
  try {
-    const user = await User.register({ username, password, email, phone });
-    response.redirect('/register')
+    const user = await User.create({ username, password, email, phone });
+    request.session.flashMessage = "Registration successful"
+    response.redirect('/cms/create')
   } catch (error) {
-    response.status(401).json({ message: error.message });
-    response.send(`${username} ${password} ${email} ${phone}`)
+  	request.session.flashMessage = "You have already registered. Please contact with admin"
+  	response.redirect('/cms/create')
   }
 }
 /* Dashboard */
@@ -57,7 +59,10 @@ const dashboard = (request, response) => {
 
 /* Group */
 
-const cc = { index,  userId,    login,   getLogin,  register, registered, dashboard }
+const cc = { 
+	// Methods of CMS
+	index,  userId,    login,   getLogin,  register, registered, dashboard
+}
 
 /* Export */
 

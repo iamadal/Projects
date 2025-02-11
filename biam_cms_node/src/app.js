@@ -5,11 +5,9 @@ require('dotenv').config()
  * Author: Adal Khan - A01799729507@gmail.com
  * Since: 10 JAN 2025
  * Error Code
- * #00001 - Rate Limit Error
- * #00002 - Maximu Request Limited
  */
 
-const         ac   = require('./actions')
+const         cmap = require('./actions')
 const         path = require('path')
 const      initMWS = require('./mws')
 const      express = require('express')
@@ -30,15 +28,20 @@ app.set('views', path.join(__dirname, 'views'));
 
 /* route map */
 
-app.get('/',              ac.index)
-app.get('/user/:id',      ac.userId)
-app.get('/register',      ac.register)
-app.get('/dashboard',     ac.dashboard) // Dashboard
-app.get('/login',         ac.getLogin)
+app.get('/',                  cmap.index)
+app.get('/user/:id',          cmap.userId)
 
-app.post('/register',     ac.registered)
-app.post('/login',        ac.login)
 
+/* Canteen routes*/
+
+app.get('/cms/create',      cmap.register)
+app.get('/cms/home',        cmap.dashboard) // Dashboard
+app.get('/cms/login',       cmap.getLogin)
+
+app.post('/cms/create',   cmap.registered)
+app.post('/cms/login',      cmap.login)
+
+/* End of canteen routes */
 
 
 
@@ -49,6 +52,17 @@ app.use((request, response) => {
 })
 
 
-app.listen(PORT) 
+ app.listen(PORT,()=> console.log(`Listening on Port ${PORT}`)) 
 
-// module.exports = app  // Enable it to test the APP
+ //module.exports = app  // Enable it to test the APP
+
+
+
+/**
+ * Error Code
+ * 
+ * 
+ * */
+
+
+ 

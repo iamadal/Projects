@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="css/app.css">
     <body>
         <p>Password Reset Request</p>
-        <form action="{{users.password_reset}}" method="POST">
+        <form action="{{ route('users.password_reset') }}" method="POST">
+            @csrf
             <input type="email" placeholder="enter your email."> <br>
             <input type="text" placeholder="enter your phone number"> <br>
-            <input type="text" placeholder="enter your message to admin">
             <p>Ticket ID: </p>
+            <p>After sending password reset request admin will contact with you. Thanks</p>
             <input type="submit">
         </form>
     </body>

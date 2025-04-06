@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Users extends Authenticatable
+class User extends Authenticatable
 {
     use HasFactory;
 
@@ -32,8 +32,4 @@ class Users extends Authenticatable
     public $timestamps = true;
 
     protected $unique = ['email', 'phone'];
-
-    public function setPasswordAttribute($value) {
-        $this->attributes['password'] = bcrypt($value);
-    }
 }

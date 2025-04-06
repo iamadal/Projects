@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Welcome Admin</title>
 </head>
 <body>
+    <h1>Welcome Admin Panel</h1>
     @if(session('success'))
-        <p style="color: red;">{{ session('success') }}</p>
+        <p style="color: green;">{{ session('success') }}</p>
     @endif
-    <h1>Welcom to RAKIB BD</h1>
-    <a href="{{route('app_login_view')}}">Login</a>
+    <a href="{{route('app_logout')}}">Logout</a>
 </body>
 </html>

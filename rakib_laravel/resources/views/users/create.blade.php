@@ -76,11 +76,12 @@
                 <div class="error-message">{{ $message }}</div>
             @enderror
             <br><br>
-            <input type="text" name="fullname" value="{{ old('fullname') }}" placeholder="enter your full Name (e.g Jon Doe)"> <br><br>
+            <input type="text" name="fullname" value="{{ old('fullname') }}" placeholder="enter your full Name (e.g Jon Doe)"> 
              @error('fullname')
                 <div class="error-message">{{ $message }}</div>
             @enderror
             <!-- Gender -->
+            <br><br>
             <select name="gender">
                 <option value="">Select your gender</option>
                 <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>

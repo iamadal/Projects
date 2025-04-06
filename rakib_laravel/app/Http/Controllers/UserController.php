@@ -3,51 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Users;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UserController extends Controller {
     
-    // Show the form to create a new user (Create)
     public function create() {
         return view('users.create');
     }
-    // Handle user registration (Store - Create)
+
     public function register(Request $request) {
-        // Validation
-        
+        // Validate the request data with custom messages
         $request->validate([
             'username' => 'required|unique:users|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
-            'phone' => 'required|regex:/^\+?[0-9]{10,15}$/', // Phone validation
+            'phone' => 'required|regex:/^\+?[0-9]{10,15}$/',
             'country' => 'required',
             'fullname' => 'required',
             'gender' => 'required',
             'dob' => 'required|date',
         ], [
-            // Custom error messages
-            'username.required' => 'Please enter a username.',
-            'username.unique' => 'This username is already taken.',
-            'email.required' => 'Please enter a valid email address.',
+            'username.required' => 'The username is required.',
+            'username.unique' => 'This username has already been taken.',
+            'username.max' => 'The username cannot be longer than 255 characters.',
+            'email.required' => 'The email address is required.',
             'email.email' => 'Please enter a valid email address.',
-            'password.required' => 'Password is required.',
-            'password.min' => 'Password must be at least 8 characters.',
-            'password.confirmed' => 'Password confirmation does not match.',
-            'phone.required' => 'Please enter your phone number.',
-            'phone.regex' => 'Phone number must be between 10 and 15 digits and may start with a +.',
-            'country.required' => 'Please select your country.',
-            'fullname.required' => 'Please enter your full name.',
+            'email.unique' => 'This email is already registered.',
+            'password.required' => 'The password is required.',
+            'password.min' => 'The password must be at least 8 characters.',
+            'password.confirmed' => 'The password confirmation does not match.',
+            'phone.required' => 'The phone number is required.',
+            'phone.regex' => 'The phone number format is invalid. Please use a valid number.',
+            'country.required' => 'Please select a country.',
+            'fullname.required' => 'Please provide your full name.',
             'gender.required' => 'Please select your gender.',
-            'dob.required' => 'Please select your date of birth.',
-            'dob.date' => 'Please enter a valid date.',
+            'dob.required' => 'Please provide your date of birth.',
+            'dob.date' => 'Please provide a valid date of birth.',
         ]);
-        
-        // Create a new user if validation passes
+
         try {
-            $user = Users::create([
-                'username' => $request->input('username'),
+            // Create the user and hash the password
+            $user = User::create([
+                'username' => trim($request->input('username')), // Trimmed input
                 'email' => $request->input('email'),
-                'password' => bcrypt($request->input('password')),
+                'password' => Hash::make(trim($request->input('password'))), // Trimmed input for password and hashed
                 'phone' => $request->input('phone'),
                 'country' => $request->input('country'),
                 'name' => $request->input('fullname'),
@@ -58,78 +59,61 @@ class UserController extends Controller {
                 'verified' => 'no'
             ]);
 
-            // Redirect back with success message
             return redirect()->route('users.create')->with('success', 'User created successfully!');
         } catch (\Exception $e) {
-            // If something goes wrong, return with an error message
             return redirect()->route('users.create')->with('error', 'There was an issue creating the user. Please try again.');
         }
     }
 
-    /* CRUD */
-
-    // Display all users (Read - Index)
-    public function index() {
-        $users = Users::all(); // Get all users from the database
-        return view('users.index', compact('users')); // Pass the users to the view
+    public function password_reset() {
+        return view('users.password_reset');
     }
 
-    // Show the form to edit a specific user (Update - Edit)
-    public function edit($id) {
-        $user = Users::findOrFail($id); // Find the user by ID
-        return view('users.edit', compact('user')); // Pass the user to the edit view
+    public function password_reset_post() {
+        return "Submitted";
     }
 
-    // Handle updating a user's information (Update - Update)
-    public function update(Request $request, $id) {
-        // Validation
-        $request->validate([
-            'username' => 'required|max:255|unique:users,username,' . $id, // Ignore unique check for the current user
-            'email' => 'required|email|unique:users,email,' . $id, // Ignore unique check for the current user
-            'phone' => 'required|regex:/^\+?[0-9]{10,15}$/', // Phone validation
-            'country' => 'required',
-            'name' => 'required',
-            'gender' => 'required',
-            'dob' => 'required|date',
+    public function UserHome() {
+        return view('users.dashboard');
+    }
+
+    /*------------------------------------------------------------*/
+    public function login(Request $request) {
+        // Validate login input with custom messages
+        $info = $request->validate([
+            'user' => 'required',
+            'pass' => 'required'
+        ], [
+            'user.required' => 'The username or email is required.',
+            'pass.required' => 'The password is required.'
         ]);
 
-        try {
-            $user = Users::findOrFail($id); // Find the user by ID
 
-            // Update user data
-            $user->update([
-                'username' => $request->username,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'country' => $request->country,
-                'name' => $request->name,
-                'gender' => $request->gender,
-                'dob' => $request->dob
-            ]);
-
-            // Redirect with success message
-            return redirect()->route('users.index')->with('success', 'User updated successfully!');
-        } catch (\Exception $e) {
-            // Return with error message
-            return redirect()->route('users.index')->with('error', 'There was an issue updating the user. Please try again.');
+        // Retrieve the user based on username or email
+        $user = User::where('username', $info['user'])->first();
+     
+        if($user) {
+            if(Hash::check($info['pass'], $user->password)) {
+                Auth::login($user);
+                session([
+                    'role'  => 'user',
+                    'email' => $user['email'],
+                    'name'  => $user['name'],
+                    'phone' => $user['phone']
+                ]);
+                return redirect()->route('dashboard')->with('success', 'Login successful!');
+            } else {
+                return redirect()->route('app_login_view')->with('error', 'Invalid credentials');
+            }
+        } else {
+                return redirect()->route('app_login_view')->with('error', 'User not Found');
         }
     }
 
-    // Handle deleting a user (Delete)
-    public function destroy($id) {
-        try {
-            $user = Users::findOrFail($id); // Find the user by ID
-            $user->delete(); // Delete the user from the database
-
-            // Redirect with success message
-            return redirect()->route('users.index')->with('success', 'User deleted successfully!');
-        } catch (\Exception $e) {
-            // Return with error message
-            return redirect()->route('users.index')->with('error', 'There was an issue deleting the user. Please try again.');
-        }
-    }
-
-    public function password_reset(){
-        return view('users.password_reset');
+    public function logout(Request $request) {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        session()->forget('role');
+        return redirect()->route('app_root')->with('success','Logged Out');
     }
 }

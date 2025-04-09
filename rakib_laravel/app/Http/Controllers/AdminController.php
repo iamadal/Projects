@@ -55,7 +55,7 @@ class AdminController extends Controller {
             if(Hash::check($info['pass'], $user->password)) {
                 Auth::login($user);
                 session([
-                    'role'  => 'admin',
+                    'xrole'  => 'admin',
                     'email' => $user['email'],
                     'name'  => $user['username'],
                 ]);

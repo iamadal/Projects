@@ -31,11 +31,10 @@ Route::prefix('users')->middleware([mws::class,'throttle:60,1'])->group(function
 });
 
 /* admin panel */
+Route::get('admin/login',[AdminController::class, 'admin_login'])->name('admin_login'); // This should be out of middleware to skip the looping
+ Route::post('admin/login', [AdminController::class, 'admin_login_submit'])->name('admin_login_submit');
 
 Route::prefix('admin')->middleware([admin_mws::class,'throttle:60,1'])->group(function () {
-    Route::get('/login',[AdminController::class, 'admin_login'])->name('admin_login');
     Route::get('/home', [AdminController::class, 'admin_home'])->name('admin_home');
-
-    Route::post('/login', [AdminController::class, 'admin_login_submit'])->name('admin_login_submit');
 });
 

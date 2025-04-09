@@ -1,6 +1,7 @@
 {
     "require": {
         "symfony/form": "^7.2",
-        "symfony/validator": "^7.2"
+        "symfony/validator": "^7.2",
+        "laravel/laravel": "^12.0"
     }
 }

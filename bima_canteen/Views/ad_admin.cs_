@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {{role_name}} - &copy BIAM</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="fav.png">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-main bnFont">
+       <div class="admin-header bnFont">
+           <div class="left">
+              <img src="img/fav.png" width="55px" height="auto"> <p class="bnFont">বিয়াম ফাউন্ডেশন, ঢাকা</p>
+           </div>
+           <div id="datetime"></div>
+           <div class="middle">
+              <p class="bnFont"> {{first_name}} {{last_name}} <br> <sub> {{role_name}}, বিয়াম ফাউন্ডেশন ঢাকা</sub></p>
+           </div>
+           <div class="right">
+               <a class="button bnFont" href="/find_bill?action=all">বিল তালিকা</a>
+               <a class="button bnFont" href="/logout">লগআউট</a>
+           </div>
+       </div>
+       <!-- Admin Info -->
+       <div class="admin-info-bar">
+          <div class="total">
+             <table>
+                 <tr><td>মোট বিল:</td><td>{{all_bill}} টি</td></tr>
+                 <tr><td>বিলের পরিমান:</td><td>{{total_amount}} টাকা</td></tr>
+             </table>
+          </div>
+          <div class="paid">
+             <table>
+                 <tr><td>পরিশোধকৃত:</td><td>{{all_paid}} টি</td></tr>
+                 <tr><td>বিলের পরিমান:</td><td>{{paid_amount}} টাকা</td></tr>
+             </table>
+
+          </div>
+          <div class="due">
+             <table>
+                 <tr><td>বকেয়া বিল:</td><td>{{all_due}} টি</td></tr>
+                 <tr><td>বিলের পরিমান:</td><td>{{due_amount}} টাকা</td></tr>
+             </table>
+          </div>
+          <div class="pending">
+             <table>
+                 <tr><td>অপেক্ষমান:</td><td>{{all_pending}} টি</td></tr>
+                 <tr><td>বিলের পরিমান:</td><td>{{pending_amount}} টাকা</td></tr>
+             </table>
+
+          </div>
+       </div>
+       <p class="bnFont report-header">রিপোর্ট তৈরী করুন</p>
+       <marquee class="bnFont notice">জনাব {{first_name}} {{last_name}}, {{role_name}}, বিয়াম ফাউন্ডেশন ঢাকা - আপনার দৃষ্টি আকর্ষণ করছি। রিপোর্ট প্রস্তুতি পূর্বে অপেক্ষমান বিলগুলি নিষ্পত্তি করুন। অপেক্ষমান বিলের তালিকা সংগ্রহের জন্য রিপোর্ট প্রতুস্তি হতে অপেক্ষমান বিলের তালিকা সংগ্রহ করা করুন। ধন্যবাদ</marquee>
+       <div class="admin-report">
+         <div class="report-01">
+            <table>
+                 <tr><td>প্রাথমিক বিল তৈরীর তারিখ:</td><td> {{first_bill}} </td></tr>
+                 <tr><td>&nbsp;সর্বশেষ বিল তৈরীর তারিখ:</td><td> {{last_bill}} </td></tr>
+             </table>
+         </div> 
+         <div class="report-02">
+            <form method="get" action="/report">
+                <label for="date-input" class="bnFont">  শুরু:</label>
+                <input class="roboto" id="date-input"  name="start_date" type="date" required>
+                
+                <label  for="date-input2" class="bnFont">  শেষ:</label>
+                <input class="roboto" id="date-input2" type="date" name="end_date" required>
+                
+                <input id="all" type="radio" name="options" value="all">
+                <label for="all"> সকল বিল</label>
+                
+                <input id="due" type="radio" name="options" value="due">
+                <label for="due"> বকেয়া বিল</label>
+                
+                <input id="paid" type="radio" name="options" value="paid">
+                <label for="padi"> পরিশোধকৃত বিল</label>
+
+                   <input id="paid" type="radio" name="options" value="pending">
+                <label for="padi"> অপেক্ষমান বিল</label>
+                
+                <input class="button bnFont" type="submit" value="রিপোর্ট তৈরী">
+</form>
+
+         </div>   
+       </div>
+       <div class="footer">
+           <p class="roboto"> Copyright &copy; BIAM Foundation, Dhaka - 2024 </p>
+       </div>
+    </div>
+</body>
+ <script type="text/javascript" src="js/script.js"></script>
+</html>

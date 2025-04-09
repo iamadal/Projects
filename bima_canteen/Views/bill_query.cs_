@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Find Bill - BIAM &copy;2024 </title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="fav.png">
+</head>
+<body>
+    <div class="bill-container">
+        <div class="bill-header box">
+            <div class="left">
+                <ul>
+                    <li><img width="40px" height="auto" src="img/biam.png"></li>
+                    <li class="bnFont">বিয়াম ফাউন্ডেশন, ঢাকা</li>
+                    <li class="bnFont">[ জনাব {{first_name}}  {{last_name}} - {{role_designation}} ]</li>
+                </ul>
+            </div>
+            <div class="middle bnFont"><p>বিলের তালিকা(অর্থ বছর ২০২৪-২৫)</p></div>
+            <div class="right">
+                <ul>
+                    <li><a class="button bnFont" href="/">মূলপাতা</a></li>
+                    <li><a class="button bnFont" href="/find_bill?action=all">বিল </a></li>
+                    <li><a class="button bnFont" href="/find_bill?action=due">বকেয়া </a></li>
+                    <li><a class="button bnFont" href="/logout">লগআউট &#9785;</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bill-menu">
+        <marquee class="bnFont">{{notice}}</marquee>
+        </div>
+        <div class="bill-result">
+            
+        <div class="content">
+            <!-- Rendering -->
+                {% if users is not empty %}
+                <div class="Search-box">
+                     <form method="GET" action="/find_bill"> 
+                        <table>
+                            <tr>
+                       <td> <input class="bnFont"  type="text" name="action" placeholder="বিল নম্বর/সংস্থা  কোড লিখুন"> </td>
+                       <td> <input class="button bnFont"  type="submit" value="খুজুন"> </td>  
+                       </tr>
+                        </table>
+                     </form>
+                </div>
+
+    <table class="admin-table">
+        <tr>
+            
+        </tr>
+        <tr>
+            <td class="bnFont">সর্বমোট ফলাফল = {{search_item}}</td>
+            <td colspan="8" class="bnFont"><strong>মোট: {{total | number_format(0, '.', ',') }} টাকা  &nbsp;&nbsp; খাবার: {{food | number_format(0, '.', ',') }} টাকা &nbsp;&nbsp; হলভাড়া: {{hall | number_format(0, '.', ',')}} টাকা &nbsp;&nbsp; বকেয়া: {{due | number_format(0, '.', ',') }} </strong></td>
+        </tr>
+        <tdead>
+            <tr class="fr bnFont">
+                <td>বিল আইডি</td>
+                <td>বিবরণ</td>
+                <td>খাবার বিল</td>
+                <td>হলভাড়া</td>
+                <td>মোট বিল</td>
+                <td>পরিশোধকৃত বিল</td>
+                <td>বকেয়া</td>
+                <td>মানি রিসিট নং</td>
+                <td>প্রত্যাশী প্রতিষ্ঠান</td>
+            </tr>
+        </tdead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td><a class="button" href="/find_bill?action=download&download={{user.bill_id}}">{{ user.bill_id }}</a></td>
+                <td  class="left-align bnFont">{{ user.description }}</td>
+                <td>{{ user.food_bill | number_format(0, '.', ',') }}</td>
+                <td>{{ user.hall_rent | number_format(0, '.', ',') }}</td>
+                <td>{{ user.total_amount | number_format(0, '.', ',') }}</td>
+                <td>{{ user.paid_amount | number_format(0, '.', ',')}}</td>
+                <td class="red"><strong>{{ user.due_amount | number_format(0, '.', ',')}}</strong></td>
+                <td class="bnFont wrap">{{ user.mr_no }}</td>
+                <td class="bnFont">{{ user.tag }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <h4 class="admin-foot bnFont"> <a class="button" href="/find_bill?action=all"> মূলপাতায় ফিরে যান</a></h4>
+    {% endif %}
+    <!-- End of Rendering -->
+
+
+        </div>
+        </div>
+    </div>
+</body>
+</html>

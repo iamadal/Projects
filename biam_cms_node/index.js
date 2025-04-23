@@ -4,7 +4,7 @@
  * JAN 2025
  * */
 
-const app      = require('./src/app.js'); module.exports = app
+const app = require('./src/app.js'); module.exports = app
 
 
 

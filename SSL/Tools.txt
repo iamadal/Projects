@@ -1,0 +1,5 @@
+mkcert (Recommended)
+mkcert --install
+mkcert hostname // ensure that the file name and host name are same in that case 
+
+openssl

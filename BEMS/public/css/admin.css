@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Noto+Sans+Bengali:wght@100..900&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box; outline:0}
+
+ hr { height: 0.5px; border: none;  background: linear-gradient(to left, #ff512f, #dd2476)};
+
+.box                  { box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); }
+.bn                   { font-family: "Noto Sans Bengali", sans-serif; font-optical-sizing: auto; font-style: normal; }
+.bems-admin-container { margin: 0px auto; padding: 10px; background-color: #fff; border: 1px solid green; border-radius: 3px}
+.menu                 { background: linear-gradient(to left, #ff512f, #dd2476); color: #fff; border-radius: 3px}
+.menu ul              { display: flex; list-style: none}
+.menu ul li           { border-left: 1px solid #F44346;  border-radius: 3px}
+.menu ul li a         { display: block; text-decoration: none; color: #fff; padding: 4px 12px}
+.menu ul li a:hover   { transition: background-color 0.3s; background-color: #F44346; display: block; }
+.bems-root            { background-color: #eee; padding: 5px; height: 100%}
+.create-users         { padding: 15px}
+.ins                  { width: 100%; font-size: 14px; padding: 4px; border-radius: 3px; margin: 3px ; box-sizing: border-box;border: 1px solid #ccc;-webkit-transition: 0.5s; transition: 0.5s;outline: none;}
+.ins:focus            { border: 1px solid #059862;}
+.button       {background-color: #04AA6D; border: none; border-radius: 5px; color: white;padding: 3px 5px;text-align: center;text-decoration: none; display: inline-block;font-size: 14px;margin: 2px;cursor: pointer;}
+.button:hover {background-color: #059862}
+		
+.admin-logo {
+    width: 55px;
+    height: auto;
+    float: left;
+    padding: -1px;
+    margin: -8px 1px;
+}
+
+input[type="file"] {
+    padding: 5px;
+    background-color: green;
+    color: #fff;
+}
+
+
+@media (min-width: 300px)  {  .bems-admin-container {width: 98%; font-size: 12px}}
+@media (min-width: 758px)  {  .bems-admin-container {width: 60%; font-size: 14px}}

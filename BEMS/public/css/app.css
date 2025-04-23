@@ -1,0 +1,159 @@
+/**
+ * CSS Reset
+ * */
+
+ /**
+  * Color Set
+  * */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Noto+Sans+Bengali:wght@100..900&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box; outline:0}
+
+.box { box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); }
+
+.bn {
+  font-family: "Noto Sans Bengali", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Mobile First */
+
+/*app_root*/
+ body                              { background-color: var(--tw-gray-100);}
+.container                         { background-color: #fff; width: 95%; margin: 0 auto; border-radius: 3px   }
+.container .header-wrap            { display: flex; margin-top: 10px; padding: 5px}
+.container .header-wrap .home_logo { height: 60px; width: auto}
+.container .header-wrap .title     { margin: 8px }
+
+.bems-menu         { background-color: var(--tw-purple-800)}
+.bems-menu ul 	   { padding: 5px;  ;margin: 0px; }
+.bems-menu ul li   { color: #fff; padding: 5px; display:inline }
+.bems-menu ul li a { disply: block; padding: 5px; color: #fff; text-decoration: none}
+.bems-menu ul li a:hover { background-color: #935aed}
+
+
+
+
+.bems-table {border-collapse: collapse; margin: 0 auto}
+.bems-table tr {border-collapse: collapse;}
+.bems-table tr td {border-collapse: collapse; padding: 3px; text-align: center;}
+
+
+/* Login System */
+
+.login-container {width: 300px; margin: 0 auto; background-color: #fff; padding: 30px; border: 1px solid green; border-radius: 5px; margin-top: 40px}
+
+/*RESPONSIVE CSS*/
+@media (min-width: 600px) {
+  .container { font-size: 16px; width: 70%; }
+}
+
+/* UI Components */
+input[type=text] ,input[type=password],input[type=tel]                      { width: 100%; font-size: 14px; padding: 4px; border-radius: 3px; margin: 3px ; box-sizing: border-box;border: 1px solid #ccc;-webkit-transition: 0.5s; transition: 0.5s;outline: none;}
+input[type=text]:focus, input[type=password]:focus, input[type=tel]:focus   { border: 1px solid #059862;}
+/* Variables */
+:root {
+
+  --bg-white-100:#ffffff;	
+  --tw-gray-50:  #f9fafb;
+  --tw-gray-100: #f3f4f6;
+  --tw-gray-200: #e5e7eb;
+  --tw-gray-300: #d1d5db;
+  --tw-gray-400: #9ca3af;
+  --tw-gray-500: #6b7280;
+  --tw-gray-600: #4b5563;
+  --tw-gray-700: #374151;
+  --tw-gray-800: #1f2937;
+  --tw-gray-900: #111827;
+
+  --tw-red-50:  #fef2f2;
+  --tw-red-100: #fee2e2;
+  --tw-red-200: #fecaca;
+  --tw-red-300: #fca5a5;
+  --tw-red-400: #f87171;
+  --tw-red-500: #ef4444;
+  --tw-red-600: #dc2626;
+  --tw-red-700: #b91c1c;
+  --tw-red-800: #991b1b;
+  --tw-red-900: #7f1d1d;
+
+  --tw-yellow-50:  #fefce8;
+  --tw-yellow-100: #fef9c3;
+  --tw-yellow-200: #fef08a;
+  --tw-yellow-300: #fde047;
+  --tw-yellow-400: #facc15;
+  --tw-yellow-500: #eab308;
+  --tw-yellow-600: #ca8a04;
+  --tw-yellow-700: #a16207;
+  --tw-yellow-800: #854d0e;
+  --tw-yellow-900: #713f12;
+
+  --tw-green-50:  #ecfdf5;
+  --tw-green-100: #d1fae5;
+  --tw-green-200: #a7f3d0;
+  --tw-green-300: #6ee7b7;
+  --tw-green-400: #34d399;
+  --tw-green-500: #10b981;
+  --tw-green-600: #059669;
+  --tw-green-700: #047857;
+  --tw-green-800: #065f46;
+  --tw-green-900: #064e3b;
+
+  --tw-blue-50:  #eff6ff;
+  --tw-blue-100: #dbeafe;
+  --tw-blue-200: #bfdbfe;
+  --tw-blue-300: #93c5fd;
+  --tw-blue-400: #60a5fa;
+  --tw-blue-500: #3b82f6;
+  --tw-blue-600: #2563eb;
+  --tw-blue-700: #1d4ed8;
+  --tw-blue-800: #1e40af;
+  --tw-blue-900: #1e3a8a;
+
+  --tw-indigo-50:  #eef2ff;
+  --tw-indigo-100: #e0e7ff;
+  --tw-indigo-200: #c7d2fe;
+  --tw-indigo-300: #a5b4fc;
+  --tw-indigo-400: #818cf8;
+  --tw-indigo-500: #6366f1;
+  --tw-indigo-600: #4f46e5;
+  --tw-indigo-700: #4338ca;
+  --tw-indigo-800: #3730a3;
+  --tw-indigo-900: #312e81;
+
+  --tw-purple-50:  #f5f3ff;
+  --tw-purple-100: #ede9fe;
+  --tw-purple-200: #ddd6fe;
+  --tw-purple-300: #c4b5fd;
+  --tw-purple-400: #a78bfa;
+  --tw-purple-500: #8b5cf6;
+  --tw-purple-600: #7c3aed;
+  --tw-purple-700: #6d28d9;
+  --tw-purple-800: #5b21b6;
+  --tw-purple-900: #4c1d95;
+
+  --tw-pink-50:  #fdf2f8;
+  --tw-pink-100: #fce7f3;
+  --tw-pink-200: #fbcfe8;
+  --tw-pink-300: #f9a8d4;
+  --tw-pink-400: #f472b6;
+  --tw-pink-500: #ec4899;
+  --tw-pink-600: #db2777;
+  --tw-pink-700: #be185d;
+  --tw-pink-800: #9d174d;
+  --tw-pink-900: #831843;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

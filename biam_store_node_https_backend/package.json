@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@fastify/cors": "^11.0.1",
+    "@fastify/helmet": "^13.0.1",
+    "@fastify/jwt": "^9.1.0",
+    "@fastify/rate-limit": "^10.2.2",
+    "dotenv": "^16.5.0",
+    "fastify": "^5.3.2"
+  },
+    "scripts": {
+    "dev": "vite",             // Start Vite development server
+    "build": "vite build",     // Vite build script to bundle the project for production
+    "serve": "vite preview"    // Preview the production build
+  }
+}

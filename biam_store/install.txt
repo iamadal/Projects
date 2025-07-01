@@ -1,0 +1,5 @@
+
+npm i fastify @fastify/static 
+npm i  typescript ts-node @types/node --save-dev
+npm create vite@latest 
+npm install svelte-spa-router

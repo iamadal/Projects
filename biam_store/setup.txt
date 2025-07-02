@@ -1,0 +1,1 @@
+npm install fastify @fastify/helmet @fastify/jwt @fastify/cors @fastify/rate-limit @fastify/formbody
